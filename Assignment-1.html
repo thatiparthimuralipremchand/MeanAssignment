@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment-1</title>
+</head>
+<body>
+    <form action="/action_page.php">
+    <h1>Corona Patient Management</h1>
+    
+        <Label>Name of the patient</Label>
+        <input type="text" id="name" name="name" placeholder="Enter patient name" size="50"><br>
+
+        <label>Gender</label>
+        Male: <input type="radio" name="sex:" value="male">
+        Female: <input type="radio" name="sex:" value="female">
+        Others: <input type="radio" name="sex:" value="others">
+        <br>
+
+        <label>Location</label>
+    <select id="location">
+        <option value="bng">Bengaluru</option>
+        <option value="chn">Chennai</option>
+    </select>
+    <br>
+
+    <Label>Pincode</Label>
+        <input type="text" id="name" name="name" placeholder="Pincode" maxlength="6"><br>
+
+        <Label>Aadhar No</Label>
+        <input type="text" id="number" name="number" placeholder="Aadhar No" maxlength="10"><br>
+
+        <Label>Mobile No</Label>
+        <input type="text" id="number" name="number" placeholder="Mobile No" maxlength="10"><br>
+
+        <Label>Attendee Name</Label>
+        <input type="text" id="name" name="name" placeholder="Enter Attendee name" size="50"><br>
+
+        <label for="birthdaytime">Date (date and time):</label>
+        <input type="datetime-local" id="datetime" name="datetime">
+        <br>
+          
+        <label for="quantity">SPO2 Level:</label>
+  <input type="number" id="quantity" name="quantity" min="0" max="100" step="1" value="97">
+  <br>
+
+  <label for="Hospital">Type of Hospital</label>
+  <select id="Hospital" name="Hospital">
+    <option value="Govt">Govt</option>
+    <option value="Private">Private</option>
+    <option value="Care Center">Care Center</option>
+  </select>
+  <br>
+
+  
+  <button><a href="patientDetails.html">submit</a></button>
+  
+</form>
+ 
+  
+  
+        
+       
+       
+    
+    
+</body>
+</html>
