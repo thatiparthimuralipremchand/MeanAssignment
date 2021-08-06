@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IPL</title>
+
+  <style>
+.players {
+    border-collapse: collapse;
+  }
+  
+  .players th {
+    border-bottom: 1px solid;
+  }
+  .players td, .players th {
+    border-left: 1px solid;
+    padding: 5px 10px;
+  }
+  .players td:first-child, .players th:first-child {
+    border-left: none;
+  }
+  
+  .sortorder:after {
+    content: '\25b2';   // BLACK UP-POINTING TRIANGLE
+  }
+  .sortorder.reverse:after {
+    content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
+  }
+  </style>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  
+  <script>
+angular.module('orderByPlayer', [])
+.controller('PlayerController', ['$scope', function($scope) {
+  var players = [
+    {PlayerName:'Virat',Team:'RCB',Season:2020,runs: 440,  wickets: 0},
+    { PlayerName:'ABD',Team:'RCB',Season:2020,runs: 405,  wickets: 0},
+    { PlayerName:'M.S.Dhoni',Team:'CSK',Season:2020, runs: 450,  wickets: 0},
+    { PlayerName:'Jadeja',Team:'CSK',Season:2020, runs: 400,  wickets: 10},
+    {PlayerName:'Kane',Team:'SRH',Season:2020,  runs: 430,  wickets: 0}
+  ];
+  $scope.propertyName = 'wickets';
+  $scope.reverse = true;
+  $scope.players = players;
+  $scope.sortBy = function(propertyName) {
+    $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+    $scope.propertyName = propertyName;
+  };
+}]);
+
+  </script>
+    
+</head>
+<body ng-app="orderByPlayer">
+  <div ng-controller="PlayerController">
+  <pre>Sort by = {{propertyName}}; reverse = {{reverse}}</pre>
+  <hr/>
+  <button ng-click="propertyName = null; reverse = false">Set to unsorted</button>
+  <hr/>
+  
+  <table class="players">
+    <tr>
+        <th>PlayerName</th>
+      <th>Team</th>
+      <th>Season</th>
+      
+      <th>
+        <button ng-click="sortBy('runs')">Runs</button>
+        <span class="sortorder" ng-show="propertyName === 'runs'" ng-class="{reverse: reverse}"></span>
+      </th>
+      <th>
+        <button ng-click="sortBy('wickets')">Wickets</button>
+        <span class="sortorder" ng-show="propertyName === 'wickets'" ng-class="{reverse: reverse}"></span>
+      </th>
+    </tr>
+    <tr ng-repeat="player in players | orderBy:propertyName:reverse">
+        <td>{{player.PlayerName}}</td>
+        <td>{{player.Team}}</td>
+        <td>{{player.Season}}</td>
+      <td>{{player.runs}}</td>
+      <td>{{player.wickets}}</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
+<!-- 
+Copyright 2021 Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
